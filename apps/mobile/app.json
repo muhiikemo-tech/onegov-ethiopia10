@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "OneGov Ethiopia",
+    "slug": "onegov-ethiopia",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "onegov",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#0B3D91",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "et.onegov.app"
+    },
+    "android": {
+      "package": "et.onegov.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B3D91"
+      }
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "apiUrl": "http://localhost:4000"
+    }
+  }
+}
