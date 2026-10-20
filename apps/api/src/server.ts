@@ -30,7 +30,8 @@ app.use(globalLimiter);
 app.get("/health", (_req, res) => res.json({ ok: true, service: "onegov-api" }));
 app.get("/api/csrf", csrfProtection, csrfToken);
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV === "development";
+const withCsrf = isDev ? [] : [csrfProtection];
 
 app.use("/api/auth", ...(withCsrf as any), authRouter as any);
 app.use("/api/services", servicesRouter as any);
