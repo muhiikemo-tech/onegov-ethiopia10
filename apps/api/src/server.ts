@@ -32,12 +32,12 @@ app.get("/api/csrf", csrfProtection, csrfToken);
 
 const isDev = process.env.NODE_ENV !== "production";
 
-app.use("/api/auth", isDev ? authRouter : [csrfProtection, authRouter]);
-app.use("/api/services", servicesRouter);
-app.use("/api/applications", isDev ? applicationsRouter : [csrfProtection, applicationsRouter]);
-app.use("/api/payments", isDev ? paymentsRouter : [csrfProtection, paymentsRouter]);
-app.use("/api/admin", isDev ? adminRouter : [csrfProtection, adminRouter]);
-app.use("/api/support", supportRouter);
+app.use("/api/auth", ...withCsrf, authRouter as any);
+app.use("/api/services", servicesRouter as any);
+app.use("/api/applications", ...withCsrf, applicationsRouter as any);
+app.use("/api/payments", ...withCsrf, paymentsRouter as any);
+app.use("/api/admin", ...withCsrf, adminRouter as any);
+app.use("/api/support", supportRouter as any);
 
 app.use("/uploads", express.static(process.env.UPLOAD_DIR || "./uploads"));
 
@@ -46,5 +46,4 @@ app.use(errorHandler);
 const port = Number(process.env.API_PORT || 4000);
 app.listen(port, () => {
   console.log(`[onegov-api] listening on :${port}`);
-  console.log(`[mode] ${isDev ? "DEV (CSRF disabled for testing)" : "PROD (CSRF enabled)"}`);
-});
+  console.log(`[mode] ${isDev ? "DEV (CSRF disabled for testing)" : "PROD (CSRF enabled)"}`);});
