@@ -32,11 +32,11 @@ app.get("/api/csrf", csrfProtection, csrfToken);
 
 const isDev = process.env.NODE_ENV !== "production";
 
-app.use("/api/auth", ...withCsrf, authRouter as any);
+app.use("/api/auth", ...(withCsrf as any), authRouter as any);
 app.use("/api/services", servicesRouter as any);
-app.use("/api/applications", ...withCsrf, applicationsRouter as any);
-app.use("/api/payments", ...withCsrf, paymentsRouter as any);
-app.use("/api/admin", ...withCsrf, adminRouter as any);
+app.use("/api/applications", ...(withCsrf as any), applicationsRouter as any);
+app.use("/api/payments", ...(withCsrf as any), paymentsRouter as any);
+app.use("/api/admin", ...(withCsrf as any), adminRouter as any);
 app.use("/api/support", supportRouter as any);
 
 app.use("/uploads", express.static(process.env.UPLOAD_DIR || "./uploads"));
