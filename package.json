@@ -13,7 +13,10 @@
     "turbo": "^2.0.0",
     "typescript": "^5.4.0"
   },
-  "overrides": {
-  "@types/express": "4.17.21",
-  "@types/express-serve-static-core": "4.19.9"
+  "pnpm": {
+    "overrides": {
+      "@types/express": "4.17.21",
+      "@types/express-serve-static-core": "4.19.9"
+    }
+  }
 }
