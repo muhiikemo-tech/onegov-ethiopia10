@@ -1,5 +1,6 @@
 const TOKEN_KEY = "onegov_admin_token";
 const USER_KEY = "onegov_admin_user";
+const API_URL = "https://onegov-api.onrender.com";
 
 export function getToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);
@@ -30,7 +31,7 @@ export function useAuth() {
 
 export async function apiFetch(path: string, init: RequestInit = {}) {
   const token = getToken();
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_URL}/api${path}`, {
     ...init,
     headers: {
       ...(init.headers || {}),

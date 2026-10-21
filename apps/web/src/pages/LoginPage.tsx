@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = "https://onegov-api.onrender.com";
+
 export function LoginPage() {
   const [step, setStep] = useState<"start" | "otp">("start");
   const [userId, setUserId] = useState("");
@@ -12,7 +14,7 @@ export function LoginPage() {
   async function startFayda() {
     setLoading(true); setError(null);
     try {
-      const res = await fetch("/api/auth/fayda/callback", {
+      const res = await fetch(`${API_URL}/api/auth/fayda/callback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code: "TESTCODE12345" }),
@@ -28,7 +30,7 @@ export function LoginPage() {
   async function verify() {
     setLoading(true); setError(null);
     try {
-      const res = await fetch("/api/auth/otp/verify", {
+      const res = await fetch(`${API_URL}/api/auth/otp/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, code }),
