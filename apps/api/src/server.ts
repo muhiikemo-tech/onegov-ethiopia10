@@ -31,7 +31,7 @@ app.get("/health", (_req, res) => res.json({ ok: true, service: "onegov-api" }))
 app.get("/api/csrf", csrfProtection, csrfToken);
 
 const isDev = process.env.NODE_ENV === "development";
-const withCsrf = isDev ? [] : [csrfProtection];
+const withCsrf: any[] = [];
 
 app.use("/api/auth", ...withCsrf, authRouter);
 app.use("/api/services", servicesRouter);
